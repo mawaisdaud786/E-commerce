@@ -36,27 +36,37 @@ function displayProducts() {
   productList.innerHTML = "";
   productArray.forEach((product) => {
     const productItem = document.createElement("div");
-    productItem.innerHTML = `<div class="product-name">${product.name}</div><div class="product-price">Rs. ${product.price}</div>`;
+    productItem.innerHTML = `<div class="product-image"></div><div class="product-name">${product.name}</div><div class="product-price">Rs. ${product.price}</div>`;
     productItem.className = "product-card";
-    productItem.setAttribute("id", `product-${product.id}`);
+    const qunatityInput = document.createElement("input");
+    qunatityInput.type = "number";
+    qunatityInput.min = "1";
+    qunatityInput.value = "1";
+    product.quantity = parseInt(qunatityInput.value);
+    qunatityInput.addEventListener("change", () => {
+      const quantity = parseInt(qunatityInput.value);
+      product.quantity = quantity;
+    });
 
+    productItem.setAttribute("id", `product-${product.id}`);
+    const productImage = productItem.querySelector(".product-image");
+    productImage.innerHTML = `<img class="productImage" src="${product.name}.jpg" alt="${product.name}">`;
     const addBtn = document.createElement("button");
     addBtn.textContent = "Add to Cart";
     addBtn.addEventListener("click", () => addToCart(product));
 
+    productItem.appendChild(qunatityInput);
     productItem.appendChild(addBtn);
     productList.appendChild(productItem);
   });
 }
 function addToCart(product) {
-  // only allow a product to be added once
-  if (cart.some((item) => item.id === product.id)) {
-    alert(`${product.name} is already in your cart.`);
-    return;
-  }
-
-  // always add with quantity 1 (no multiples)
-  cart.push({ ...product, quantity: 1 });
+    if(cart.some((item) => item.id === product.id)) {
+        item = cart.find((item) => item.id === product.id);
+        item.quantity += product.quantity;
+    } else{
+        cart.push({ ...product});
+    }
   saveTolocalStorage();
   displayCart();
   calculateTotal();
@@ -90,7 +100,7 @@ function removeFromCart(product) {
   cart = cart.filter((item) => item.id !== product.id);
   displayCart();
   calculateTotal();
-    saveTolocalStorage();
+  saveTolocalStorage();
 }
 
 function saveTolocalStorage() {
