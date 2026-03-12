@@ -90,6 +90,7 @@ function removeFromCart(product) {
   cart = cart.filter((item) => item.id !== product.id);
   displayCart();
   calculateTotal();
+    saveTolocalStorage();
 }
 
 function saveTolocalStorage() {
