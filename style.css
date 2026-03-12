@@ -9,6 +9,7 @@ body {
   font-family: 'Poppins', Arial, sans-serif;
   background: linear-gradient(to right, #74ebd5, #ACB6E5);
   padding: 20px;
+  overflow-x: hidden;
 }
 
 /* Title */
@@ -23,8 +24,7 @@ body {
 /* Container */
 .container {
   display: flex;
-  gap: 40px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
 }
@@ -32,17 +32,18 @@ body {
 /* Products Section */
 .products {
   width: 55%;
+  text-align: center;
 }
 
 #searchInput {
-  width: 100%;
-  padding: 10px 15px;
   margin-bottom: 20px;
   border-radius: 50px;
   border: none;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-size: 1rem;
   outline: none;
+    width: 100%;
+    padding: 10px 20px;
 }
 
 .product-card {
@@ -52,7 +53,8 @@ body {
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   align-items: center;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -66,14 +68,15 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
   color: #333;
-  width: 33%;
-
+  width: 60%;
 }
 
 .product-price {
   font-weight: 600;
   color: #4CAF50;
   margin-top: 5px;
+  width: 50%;
+  text-align: left;
 }
 
 /* Add to Cart Button */
@@ -86,6 +89,8 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: background 0.3s, transform 0.2s;
+  width: 90%;
+  margin: 10px 0;
 }
 
 .product-card button:hover {
@@ -93,6 +98,13 @@ body {
   transform: scale(1.05);
 }
 
+.product-card input{
+    background-color: #acb6e539;
+    padding: 5px;
+    border-radius: 10px;
+    border: #acb6e539 1px solid;
+    width: 60px;
+}
 /* Cart Section */
 .cart {
   width: 35%;
@@ -180,10 +192,24 @@ body {
   background-color: #4CAF50;
   border-radius: 3px;
 }
+.product-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .product-image img{
-    width: 100px;
+    width: 150px;
     border-radius: 10px;
     box-shadow: 10px 4px 15px rgba(0,0,0,0.1);
+}
+.productImage{
+        width: 150px;
+    border-radius: 10px;
+    box-shadow: 10px 4px 15px rgba(0,0,0,0.1);
+    margin: 0 10px;
+}
+span{
+    margin: 0 10px;
 }
 
 @media screen and (max-width: 768px) {
