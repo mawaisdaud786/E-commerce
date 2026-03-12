@@ -84,6 +84,7 @@ function clearCart() {
   cart = [];
   displayCart();
   calculateTotal();
+  saveTolocalStorage();
 }
 function removeFromCart(product) {
   cart = cart.filter((item) => item.id !== product.id);
